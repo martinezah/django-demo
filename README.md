@@ -84,32 +84,42 @@ Now revisit <http://localhost:8000/>
 
 Recall that we got an error message about `unapplied migrations` when we first started the development server. Django has a built-in ORM that manages database schemas, and a default project includes several core Django "apps" that have associated schemas. 
 
-- Add those initial schemas to the database:
+1) Add those initial schemas to the database:
 
 `./manage.py migrate`
 
-- Create an admin superuser account:
+2) Create an admin superuser account:
 
 `./manage.py createsuperuser`
 
-- Visit <http://localhost:8000/admin>
+3) Visit <http://localhost:8000/admin>
 
-- Create `webapp/models.py`
+4) Create `webapp/models.py`
 
     from django.contrib.auth.models import User
     from django.db import models
-
+    
     class Note(models.Model):
         user = models.ForeignKey(User)
         created = models.DateTimeField()
         title = models.CharField(max_length=255)
         text = models.TextField()
 
-- Generate schema migration
+5) Generate schema migration
 
 `./manage.py makemigrations webapp`
 
-- And apply the migrations
+6) Apply the migrations
 
 `./manage.py migrate`
 
+7) Create `webapp/admin.py`
+
+    from django.contrib import admin
+    from .models import *
+
+    admin.site.register(Note)
+
+8) Restart the development server, and revisit <http://localhost:8000/admin>
+
+9) Add a `__str__` method to Note model if desired
