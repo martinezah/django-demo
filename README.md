@@ -138,3 +138,26 @@ Recall that we got an error message about `unapplied migrations` when we first s
     <h4><a href="{% url "note" note.id %}">{{ note.title}}</a></h4>
     {% endfor %}
 
+Revisit <http://localhost:8000/> 
+
+3) Add a route to `webapp/urls.py`:
+    
+    url(r'^(?P<id>[0-9]+)/?$', views.note, name='note')
+
+4) Add a view to `webapp/views.py`:
+
+    def note(request, id):
+        response = {
+            'note': Note.objects.get(id=id)
+        }
+        return render(request, 'note.html', repsonse)
+        
+5) Add a template `webapp/templates/note.html`:
+    
+    {% extends 'base.html' %}
+    {% block content %}
+    <h4>{{note.title}}</h4>
+    <p>{{ note.text }}</p>
+    {% endblock %}
+
+    
