@@ -41,11 +41,11 @@ Add a `hello` controller
         }
         return render(request, 'hello.html', response)
 
-1) edit `webapp/settings.py`
+2) edit `webapp/settings.py`
 
 Add `'webapp'` to `INSTALLED_APPS`
 
-1) edit `webapp/templates/hello.html`
+3) edit `webapp/templates/hello.html`
 
     <!DOCTYPE html>
     <html>
@@ -54,8 +54,31 @@ Add `'webapp'` to `INSTALLED_APPS`
     </body>
     </html>
 
-1) edit `webapp/urls.py`
+4) edit `webapp/urls.py`
     
 Import `views` and add `url(r'^$', views.hello, name='hello')` to `urlpatterns`
     
 Now revisit <http://localhost:8000/>
+
+## Template Inheritance
+
+1) Create `webapp/templates/base.html`
+
+    <!DOCTYPE html>
+    <html>
+    <body>
+    {% block content %}
+    Nothing to see here
+    {% endblock %}
+    </body>
+
+2) Edit `webapp/templates/hello.html`
+
+    {% extends 'base.html' %}
+    {% block content}
+    Hello, {{ username }}!
+    {% endblock %}
+ 
+
+    </html>
+
