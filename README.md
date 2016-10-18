@@ -1,4 +1,4 @@
- Intro to Django 
+# Intro to Django 
 
 ## What is Django?
 
@@ -122,4 +122,19 @@ Recall that we got an error message about `unapplied migrations` when we first s
 
 8) Restart the development server, and revisit <http://localhost:8000/admin>
 
-9) Add a `__str__` method to Note model if desired
+9) Use the Admin UI to add a couple of Note objects
+
+10) Add a `__str__()` method to Note model if desired
+
+## Working with Models and Views
+
+1) Add to `hello()` in `webapp/views.py`:
+
+    response['notes'] = Note.objects.filter(user=request.user)
+
+2) Add to `webapp/templates/hello.html`:
+    
+    {% for note in notes %}
+    <h4><a href="{% url "note" note.id %}">{{ note.title}}</a></h4>
+    {% endfor %}
+
