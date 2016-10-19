@@ -150,7 +150,7 @@ Revisit <http://localhost:8000/>
         response = {
             'note': Note.objects.get(id=id)
         }
-        return render(request, 'note.html', repsonse)
+        return render(request, 'note.html', response)
         
 5) Add a template `webapp/templates/note.html`:
     
