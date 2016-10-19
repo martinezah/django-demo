@@ -160,4 +160,8 @@ Revisit <http://localhost:8000/>
     <p>{{ note.text }}</p>
     {% endblock %}
 
-    
+## Next steps
+
+- REST Extensions <http://www.django-rest-framework.org>
+- Unit Testing <https://docs.djangoproject.com/en/1.10/topics/testing/overview/>
+- Authentication & Permissions <https://docs.djangoproject.com/en/1.10/topics/auth/default/>
